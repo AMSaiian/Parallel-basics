@@ -1,6 +1,8 @@
+package Task_1;
+
 import javax.swing.*;
 
-public class Lab1 {
+public class Bounce {
     public static void main (String[] args){
         BounceFrame frame = new BounceFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
