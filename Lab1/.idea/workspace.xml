@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75a691a7-1fe5-4a3d-8add-7f772f18f837" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Task_6/ICounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Task_6/NonSyncCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Task_6/SyncBlockCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Task_6/SyncLockCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Task_6/SyncMethodCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Task_6/Task_6.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Task_5/Task_5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task_5/Task_5.java" afterDir="false" />
     </list>
@@ -38,23 +32,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Bounce.executor": "Run",
-    "Application.Lab1.executor": "Run",
-    "Application.Task_1.Bounce.executor": "Run",
-    "Application.Task_2.Bounce.executor": "Run",
-    "Application.Task_4.Bounce.executor": "Run",
-    "Application.Task_5.executor": "Run",
-    "Application.Task_6.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Projects/Java/Lab1",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Bounce.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Lab1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Task_1.Bounce.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Task_2.Bounce.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Task_4.Bounce.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Task_5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Task_6.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Projects/Java/Lab1&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Repositories\Parallel-basics\Lab1\src" />

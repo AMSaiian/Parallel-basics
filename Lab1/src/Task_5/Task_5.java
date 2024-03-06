@@ -2,7 +2,7 @@ package Task_5;
 
 public class Task_5 {
     public static void main(String[] args) {
-        boolean isSync = false;
+        boolean isSync = true;
 
         if (isSync) {
             Syncronizer syncronizer = new Syncronizer();
