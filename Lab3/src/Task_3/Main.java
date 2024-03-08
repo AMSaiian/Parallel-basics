@@ -43,7 +43,7 @@ public class Main {
         ArrayList<TeacherThread> teacherThreads = new ArrayList<>();
 
         System.out.printf("%-12s %-14s %-13s %-16s %-18s %-10s\n",
-                "Teacher", "Position", "Week", "Group", "Student", "Grade");
+                "Teacher", "Position", "Week", "Group", "Student", "Mark");
 
         for (Teacher teacher : teachers) {
             TeacherThread teacherThread = new TeacherThread(teacher, journal, groups);
@@ -62,6 +62,6 @@ public class Main {
             }
         }
 
-        journal.printGrades();
+        journal.printMarks();
     }
 }

@@ -2,22 +2,18 @@ package Task_3;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Journal {
     private final ArrayList<Group> groups;
-    private final ConcurrentHashMap<String, Integer> marks = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Mark> marks = new ConcurrentHashMap<>();
     private final int weekAmount;
-    private final ReentrantLock locker = new ReentrantLock();
 
     public Journal(ArrayList<Group> groups, int weekAmount) {
         this.groups = groups;
         this.weekAmount = weekAmount;
     }
 
-    public void putGrade(String groupName, String studentName, int week, int grade) {
-
-
+    public void putMark(String groupName, String studentName, int week, int mark) {
         if (week > weekAmount)
             throw new IllegalArgumentException("Invalid week num");
 
@@ -31,17 +27,12 @@ public class Journal {
 
         String markIdentificator = String.format("%d-%d-%d", week, groupId, studentId);
 
-        locker.lock();
+        Mark needMark = marks.computeIfAbsent(markIdentificator, g -> new Mark());
 
-        try {
-            marks.put(markIdentificator, grade);
-        } finally {
-            locker.unlock();
-        }
-
+        needMark.addMark(mark);
     }
 
-    public int getGrade(String groupName, String studentName, int week) {
+    public int getMark(String groupName, String studentName, int week) {
 
         if (week > weekAmount)
             throw new IllegalArgumentException("Invalid week num");
@@ -56,55 +47,39 @@ public class Journal {
 
         String markIdentificator = String.format("%d-%d-%d", week, groupId, studentId);
 
-        locker.lock();
-        Integer mark;
-        try {
-            mark = marks.get(markIdentificator);
-        } finally {
-            locker.unlock();
-        }
+        Mark needMark = marks.computeIfAbsent(markIdentificator, g -> new Mark());
 
-        if (mark == null)
-            mark = -1;
-
-        return mark;
+        return needMark.getValue();
     }
 
     public int getWeekAmount() {
         return weekAmount;
     }
 
-    public void printGrades() {
-        locker.lock();
+    public void printMarks() {
+        System.out.println("\nJournal\n");
 
-        try {
-            System.out.println("\nJournal\n");
+        for (Group group : groups) {
+            System.out.println(group.getGroupName());
 
-            for (Group group : groups) {
-                System.out.println(group.getGroupName());
-
-                for (int week = 1; week <= weekAmount; week++) {
-                    if (week == 1) {
-                        System.out.printf("%-12s", "");
-                    }
-                    System.out.printf("Week %-5d", week);
+            for (int week = 1; week <= weekAmount; week++) {
+                if (week == 1) {
+                    System.out.printf("%-12s", "");
                 }
+                System.out.printf("Week %-5d", week);
+            }
 
-                System.out.println();
+            System.out.println();
 
-                for (Student student : group.getStudents()) {
-                    System.out.print(student.getName() + ":   ");
-                    for (int week = 1; week <= weekAmount; week++) {
-                        String markIdentificator = String.format("%d-%d-%d", week, group.getId(), student.getId());
-                        int grade = marks.get(markIdentificator);
-                        System.out.printf("%-10d", grade);
-                    }
-                    System.out.println();
+            for (Student student : group.getStudents()) {
+                System.out.print(student.getName() + ":   ");
+                for (int week = 1; week <= weekAmount; week++) {;
+                    int mark = getMark(group.getGroupName(), student.getName(), week);
+                    System.out.printf("%-10d", mark);
                 }
                 System.out.println();
             }
-        } finally {
-            locker.unlock();
+            System.out.println();
         }
     }
 }

@@ -3,8 +3,8 @@ import Infrastructure.SequentialTestCase;
 
 public class Main {
     public static void main(String[] args) {
-        int[] matrixSizes = { 500, 1000, 1500, 2000 };
-        int[] threadAmounts = { 4, 8, 12 };
+        int[] matrixSizes = { 500 };
+        int[] threadAmounts = { 4 };
         int printRowAmount = 5;
 
         for (int matrixSize : matrixSizes) {

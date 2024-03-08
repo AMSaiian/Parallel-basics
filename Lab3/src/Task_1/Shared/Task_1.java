@@ -10,10 +10,10 @@ public class Task_1 {
     public static final int INITIAL_BALANCE = 10000;
 
     public static void main(String[] args) {
-//        IBank b = new SyncBlockBank(NACCOUNTS, INITIAL_BALANCE);
+        IBank b = new SyncBlockBank(NACCOUNTS, INITIAL_BALANCE);
 //        IBank b = new SyncMethodBank(NACCOUNTS, INITIAL_BALANCE);
 //        IBank b = new LockBank(NACCOUNTS, INITIAL_BALANCE);
-        IBank b = new Bank(NACCOUNTS, INITIAL_BALANCE);
+//        IBank b = new Bank(NACCOUNTS, INITIAL_BALANCE);
 
         int i;
         for (i = 0; i < NACCOUNTS; i++){

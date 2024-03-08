@@ -19,17 +19,16 @@ public class TeacherThread extends Thread {
 
             for (Group group : groups) {
                 for (Student student : group.getStudents()) {
-                    int grade = teacher.getGrade();
+                    int mark = teacher.generateMark();
                     String groupName = group.getGroupName();
                     String studentName = student.getName();
 
-                    journal.putGrade(groupName, studentName, week, grade );
+                    journal.putMark(groupName, studentName, week, mark);
 
-                    System.out.printf("%-12s %-14s week %-8d %-16s %-18s grade %-10d\n",
-                            teacher.getName(), teacher.getPosition(), week, groupName, studentName, grade);
+                    System.out.printf("%-12s %-14s week %-8d %-16s %-18s mark %-10d\n",
+                            teacher.getName(), teacher.getPosition(), week, groupName, studentName, mark);
                 }
             }
-
         }
     }
 }

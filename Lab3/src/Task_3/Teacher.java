@@ -17,7 +17,7 @@ public class Teacher {
         return position;
     }
 
-    public int getGrade() {
-        return (int) (Math.random() * 10 + 1);
+    public int generateMark() {
+        return (int) (Math.random() * 100 + 1);
     }
 }
