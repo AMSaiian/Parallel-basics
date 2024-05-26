@@ -7,10 +7,10 @@ import mpi.MPI;
 
 public class Main {
     public static void main(String[] args) {
-        final int matrixSize = 1000;
-        final int numberOfProcessors = 12;
+        final int matrixSize = 2000;
+        final int numberOfProcessors = 2;
         final MultiplierType type = MultiplierType.NonBlocking;
-        final boolean isShowResult = true;
+        final boolean isShowResult = false;
         final int showRowsAmount = 4;
         final int showColsAmount = 4;
 

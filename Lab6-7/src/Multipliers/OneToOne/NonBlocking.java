@@ -11,29 +11,31 @@ public class NonBlocking {
                                 Matrix left,
                                 Matrix right,
                                 Matrix result) {
-        int rowsPerProcess = matrixSize / numberOfProcessors;
-        int extraRows = matrixSize % numberOfProcessors;
-        Request[] requests = new Request[numberOfProcessors * 2];
+        if (rank <= numberOfProcessors - 1) {
+            int rowsPerProcess = matrixSize / numberOfProcessors;
+            int extraRows = matrixSize % numberOfProcessors;
+            Request[] requests = new Request[numberOfProcessors * 2];
 
-        if (rank == 0) {
-            sendMatricesToWorkers(requests, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left);
-        } else {
-            receiveMatrixFromMaster(requests, rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left);
+            if (rank == 0) {
+                sendMatricesToWorkers(requests, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left);
+            } else {
+                receiveMatrixFromMaster(requests, rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left);
+            }
+
+            exchangeMatrixBetweenProcesses(requests, rank, numberOfProcessors, matrixSize, right);
+
+            Request.Waitall(requests);
+
+            computeMatrixMultiplication(rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left, right, result);
+
+            if (rank == 0) {
+                collectResultsFromWorkers(requests, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
+            } else {
+                sendResultToMaster(requests, rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
+            }
+
+            Request.Waitall(requests);
         }
-
-        exchangeMatrixBetweenProcesses(requests, rank, numberOfProcessors, matrixSize, right);
-
-        Request.Waitall(requests);
-
-        computeMatrixMultiplication(rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left, right, result);
-
-        if (rank == 0) {
-            collectResultsFromWorkers(requests, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
-        } else {
-            sendResultToMaster(requests, rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
-        }
-
-        Request.Waitall(requests);
     }
 
     private static void sendMatricesToWorkers(Request[] requests,
