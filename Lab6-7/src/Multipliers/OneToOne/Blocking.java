@@ -10,32 +10,30 @@ public class Blocking {
                                 Matrix left,
                                 Matrix right, 
                                 Matrix result) {
-        if (rank <= numberOfProcessors - 1) {
-            int rowsPerProcess = matrixSize / numberOfProcessors;
-            int extraRows = matrixSize % numberOfProcessors;
+        int rowsPerProcess = matrixSize / numberOfProcessors;
+        int extraRows = matrixSize % numberOfProcessors;
 
-            if (rank == 0) {
-                sendRowsToWorkers(numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left);
-            } else {
-                receiveRowsFromMaster(rank, rowsPerProcess, numberOfProcessors, extraRows, matrixSize, left);
-            }
+        if (rank == 0) {
+            sendRowsToWorkers(numberOfProcessors, rowsPerProcess, extraRows, matrixSize, left);
+        } else {
+            receiveRowsFromMaster(rank, rowsPerProcess, numberOfProcessors, extraRows, matrixSize, left);
+        }
 
-            exchangeRightMatrix(rank, numberOfProcessors, right);
+        exchangeRightMatrix(rank, numberOfProcessors, right);
 
-            computeMatrixMultiplication(rank,
-                    numberOfProcessors,
-                    rowsPerProcess,
-                    extraRows,
-                    matrixSize,
-                    left,
-                    right,
-                    result);
+        computeMatrixMultiplication(rank,
+                numberOfProcessors,
+                rowsPerProcess,
+                extraRows,
+                matrixSize,
+                left,
+                right,
+                result);
 
-            if (rank == 0) {
-                collectResultsFromWorkers(numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
-            } else {
-                sendResultToMaster(rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
-            }
+        if (rank == 0) {
+            collectResultsFromWorkers(numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
+        } else {
+            sendResultToMaster(rank, numberOfProcessors, rowsPerProcess, extraRows, matrixSize, result);
         }
     }
 

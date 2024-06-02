@@ -1,5 +1,7 @@
 public enum MultiplierType {
     Sequential,
     Blocking,
-    NonBlocking
+    NonBlocking,
+    OneToMany,
+    ManyToMany
 }
